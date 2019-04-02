@@ -148,10 +148,14 @@ class Level {
 }
 
 class Player extends Actor{
-	constructor( x, y ) {
+	constructor( pos = new Vector(0, 0) ) {
 
-		super( new Vector(x, y - 0.5), new Vector(0.8, 1.5), new Vector(0,0) );
-		//super(pos.plus(new Vector(0, -0.5)), new Vector(0.8, 1.5), new Vector(0, 0));
+		const position = new Vector(pos.x, pos.y - 0.5),
+					size = new Vector(0.8, 1.5),
+					speed = new Vector(0, 0);
+
+		super( position, size, speed );
+		//super( new Vector(pos.x, pos.y - 0.5 ), new Vector(0.8, 1.5), new Vector(0, 0) );
 	}
 	get type() {
 		return 'player';
@@ -283,6 +287,7 @@ const actorDict = {
 const parser = new LevelParser(actorDict);
 const level = parser.parse(schema);
 runLevel(level, DOMDisplay);
+
 
 /*
 
